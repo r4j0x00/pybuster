@@ -37,7 +37,7 @@ if args.output != None:
 proxy = {}
 if args.proxy != None:
 	p = args.proxy
-	if not p.startswith('http://') or p.startswith('https://'):
+	if not p.startswith('http://') and not p.startswith('https://'):
 		print "Proxy should be like [http(s)://host:port]"
 		exit(1)
 	proxy[p.split("://")[0]] = p
@@ -75,7 +75,7 @@ else:
 	exit(1)
 if args.url != None:
 	base_url = args.url
-	if not base_url.startswith('http://') or base_url.startswith('https://'):
+	if not base_url.startswith('http://') and not base_url.startswith('https://'):
 		base_url = 'http://'+base_url
 	if not base_url.endswith('/'):
 		base_url += '/'
