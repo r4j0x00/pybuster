@@ -1,2 +1,2 @@
 # pybuster
-A powerful web directory fuzzer in python
+pybuster is a powerful multithreaded web directory fuzzer written in python  
