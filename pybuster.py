@@ -6,6 +6,7 @@ from requests import get,head
 from os import path
 import threading
 import argparse
+
 parser = argparse.ArgumentParser()
 parser.add_argument("-w","--wordlist", help="path to wordlist")
 parser.add_argument("-u","--url", help="address of remote site")
@@ -102,6 +103,7 @@ if args.threads != None:
 
 def find_s(wordlist):
 	for i in wordlist:
+            try:
 		r = head(base_url+i,headers=headers,proxies=proxy,auth=auth)
 		if r.status_code in valid:
 			if not args.extended:
@@ -110,11 +112,14 @@ def find_s(wordlist):
 				print base_url+i+" (Status: %s)" %(r.status_code)
 			if args.output != None:
 				f.write(base_url+i+" (Status: %s)" %(r.status_code)+"\n")
+            except:
+                pass
 def find_w(wordlist):
 	path = random_path()
 	r = get(base_url+path).content
 	nw = len(r.split(' '))
 	for i in wordlist:
+            try:
 		r = len(get(base_url+i,headers=headers,proxies=proxy,auth=auth).content.split(' '))
 		r -= len(i.split(' '))-1
 		if r != nw:
@@ -124,6 +129,8 @@ def find_w(wordlist):
 				print base_url+i+" (Words: %s)" %(r)
 			if args.output != None:
 				f.write(base_url+i+" (Words: %s)" %(r)+"\n")
+            except:
+                pass
 def chunk(seq, num):
     avg = len(seq) / float(num)
     out = []
@@ -176,6 +183,7 @@ if check():
 		x.daemon = True
 		threads.append(x)
 		x.start()
+
 elif args.auto:
         for i in w:
                 x = threading.Thread(target=find_w, args=(i,))
