@@ -129,3 +129,6 @@ root@kali:~/test/pybuster# pybuster -u http://localhost/ -w /usr/share/wordlists
 /server-status (Status: 200)
 /index.html (Status: 200)
 ```
+
+## Licence
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
