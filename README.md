@@ -60,3 +60,73 @@ optional arguments:
 ```
 
 ## Examples
+### `Default` mode
+The command may look like:  
+```bash
+pybuster -u https://mysite.com/path/to/folder -c 'session=asdfgh' -t 50 -w wordlist-name.txt -x .php,.zip
+
+```
+Default options:  
+```bash
+root@kali:~/pybuster# pybuster -u http://localhost/ -w /usr/share/wordlists/dirb/common.txt 
+
+=====================================================
+Pybuster v1.0                                  by R4J
+=====================================================
+[+] Mode         : dir
+[+] Url/Domain   : http://localhost/
+[+] Threads      : 20
+[+] Wordlist     : /usr/share/wordlists/dirb/common.txt
+[+] Status codes : 200,204,301,302,307,403
+[+] Extensions   : None
+=====================================================
+2019/08/13 09:30:08 Starting pybuster
+=====================================================
+/.hta (Status: 403)
+/.htaccess (Status: 403)
+/.htpasswd (Status: 403)
+/uploads (Status: 301)
+/server-status (Status: 200)
+/index.html (Status: 200)
+=====================================================
+2019/08/13 09:30:09 Finished
+=====================================================
+```
+
+Default options using word-fuzz:
+```bash
+root@kali:~/pybuster# pybuster -u http://localhost/ -w /usr/share/wordlists/dirb/common.txt -wf
+
+=====================================================
+Pybuster v1.0                                  by R4J
+=====================================================
+[+] Mode         : dir
+[+] Url/Domain   : http://localhost/
+[+] Threads      : 20
+[+] Wordlist     : /usr/share/wordlists/dirb/common.txt
+[+] Status codes : 200,204,301,302,307,403
+[+] Extensions   : None
+=====================================================
+2019/08/13 09:32:02 Starting pybuster
+=====================================================
+/.hta (Words: 22)
+/.htaccess (Words: 22)
+/.htpasswd (Words: 22)
+/uploads (Words: 52)
+/server-status (Words: 281)
+/index.html (Words: 3427)
+=====================================================
+2019/08/13 09:32:04 Finished
+=====================================================
+```
+
+Example for quite mode:
+```bash
+root@kali:~/test/pybuster# pybuster -u http://localhost/ -w /usr/share/wordlists/dirb/common.txt -q
+/.hta (Status: 403)
+/.htaccess (Status: 403)
+/.htpasswd (Status: 403)
+/uploads (Status: 301)
+/server-status (Status: 200)
+/index.html (Status: 200)
+```
