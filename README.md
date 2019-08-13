@@ -20,6 +20,43 @@ usage: pybuster [-h] [-w WORDLIST] [-u URL] [-t THREADS] [--auto] [-f]
                 [-x EXTENSIONS]
 ```
 
-![Screenshot](https://raw.githubusercontent.com/r4j1337/pybuster/master/images/help.png)  
-![Screenshot](https://raw.githubusercontent.com/r4j1337/pybuster/master/images/example.png)    
-![Screenshot](https://raw.githubusercontent.com/r4j1337/pybuster/master/images/wlen.png)
+## Built-in help menu
+```
+root@kali:~/pybuster# pybuster -h
+usage: pybuster [-h] [-w WORDLIST] [-u URL] [-t THREADS] [--auto] [-f]
+                [-a USER_AGENT] [-c COOKIES] [-fs] [-e] [-p PROXY] [-q]
+                [-o OUTPUT] [-s STATUS_CODES] [-U USERNAME] [-P PASSWORD]
+                [-x EXTENSIONS]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -w WORDLIST, --wordlist WORDLIST
+                        path to wordlist
+  -u URL, --url URL     address of remote site
+  -t THREADS, --threads THREADS
+                        number of threads to use
+  --auto                shows response on basis of number of words
+  -f, --force           use to force status check
+  -a USER_AGENT, --user-agent USER_AGENT
+                        add custom user agent
+  -c COOKIES, --cookies COOKIES
+                        pass cookies as a string
+  -fs, --forward-slash  append a forward slash to all requests
+  -e, --extended        show extended urls
+  -p PROXY, --proxy PROXY
+                        Proxy to use for requests [http(s)://host:port]
+  -q, --quite           doesnt print banner and other stuff
+  -o OUTPUT, --output OUTPUT
+                        output to a file
+  -s STATUS_CODES, --status-codes STATUS_CODES
+                        manually pass the positive status codes (default
+                        "200,204,301,302,307,403")
+  -U USERNAME, --username USERNAME
+                        username for basic http auth
+  -P PASSWORD, --password PASSWORD
+                        password for basic http auth
+  -x EXTENSIONS, --extensions EXTENSIONS
+                        file extension(s) to search for
+```
+
+## Examples
