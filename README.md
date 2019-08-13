@@ -22,8 +22,8 @@ usage: pybuster [-h] [-w WORDLIST] [-u URL] [-t THREADS] [--auto] [-f]
 
 ## Built-in help menu
 ```
-root@kali:~/pybuster# pybuster -h
-usage: pybuster [-h] [-w WORDLIST] [-u URL] [-t THREADS] [--auto] [-f]
+root@kali:~/test/pybuster# pybuster -h
+usage: pybuster [-h] [-w WORDLIST] [-u URL] [-t THREADS] [-wf] [-f]
                 [-a USER_AGENT] [-c COOKIES] [-fs] [-e] [-p PROXY] [-q]
                 [-o OUTPUT] [-s STATUS_CODES] [-U USERNAME] [-P PASSWORD]
                 [-x EXTENSIONS]
@@ -35,7 +35,7 @@ optional arguments:
   -u URL, --url URL     address of remote site
   -t THREADS, --threads THREADS
                         number of threads to use
-  --auto                shows response on basis of number of words
+  -wf, --word-fuzz      shows response on basis of number of words
   -f, --force           use to force status check
   -a USER_AGENT, --user-agent USER_AGENT
                         add custom user agent
