@@ -11,7 +11,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-w","--wordlist", help="path to wordlist")
 parser.add_argument("-u","--url", help="address of remote site")
 parser.add_argument("-t","--threads", help="number of threads to use",default=20)
-parser.add_argument("--auto",action="store_true",help="shows response on basis of number of words")
+parser.add_argument("-wf","--word-fuzz",action="store_true",help="shows response on basis of number of words")
 parser.add_argument("-f","--force",action="store_true",help="use to force status check")
 parser.add_argument("-a","--user-agent", help="add custom user agent")
 parser.add_argument("-c","--cookies", help="pass cookies as a string")
@@ -141,16 +141,16 @@ def chunk(seq, num):
         last += avg
     return out
 def check():
-	if args.auto:
+	if args.word_fuzz:
 		return False
 	if args.force:
 		return True
 	path = random_path()
 	r = get(base_url+path,verify=False)
 	if r.status_code in valid:
-		if not args.auto:
+		if not args.word_fuzz:
 			print "[+] Wildcard response found /"+path+" ("+str(r.status_code)+")"
-			print "[+] Use --auto for automatically showing available pages"
+			print "[+] Use --word-fuzz to fuzz pages on basis of word count"
 			print "[+] Use -f to force status code check"
 		return False
 	else:
@@ -185,7 +185,7 @@ if check():
 		threads.append(x)
 		x.start()
 
-elif args.auto:
+elif args.word_fuzz:
         for i in w:
                 x = threading.Thread(target=find_w, args=(i,))
                 x.daemon = True

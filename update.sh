@@ -1,3 +1,3 @@
 #!/bin/bash
 git pull
-./install.sh
+cp pybuster.py /usr/bin/pybuster.py
