@@ -24,6 +24,7 @@ parser.add_argument('-s','--status-codes',help='manually pass the positive statu
 parser.add_argument("-U","--username", help="username for basic http auth")
 parser.add_argument("-P","--password", help="password for basic http auth")
 parser.add_argument("-x","--extensions", help="file extension(s) to search for")
+
 args = parser.parse_args()
 extensions = None
 if args.extensions != None:
@@ -104,7 +105,7 @@ if args.threads != None:
 def find_s(wordlist):
 	for i in wordlist:
             try:
-		r = head(base_url+i,headers=headers,proxies=proxy,auth=auth)
+		r = head(base_url+i,headers=headers,proxies=proxy,auth=auth,verify=False)
 		if r.status_code in valid:
 			if not args.extended:
 				print "/"+i+" (Status: %s)" %(r.status_code)
@@ -116,11 +117,11 @@ def find_s(wordlist):
                 pass
 def find_w(wordlist):
 	path = random_path()
-	r = get(base_url+path).content
+	r = get(base_url+path,verify=False).content
 	nw = len(r.split(' '))
 	for i in wordlist:
             try:
-		r = len(get(base_url+i,headers=headers,proxies=proxy,auth=auth).content.split(' '))
+		r = len(get(base_url+i,headers=headers,proxies=proxy,auth=auth,verify=False).content.split(' '))
 		r -= len(i.split(' '))-1
 		if r != nw:
 			if not args.extended:
@@ -145,7 +146,7 @@ def check():
 	if args.force:
 		return True
 	path = random_path()
-	r = get(base_url+path)
+	r = get(base_url+path,verify=False)
 	if r.status_code in valid:
 		if not args.auto:
 			print "[+] Wildcard response found /"+path+" ("+str(r.status_code)+")"
